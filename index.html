@@ -184,6 +184,9 @@
   .vtabs .chip{font-size:12px}
   .vmedia img{width:100%;border-radius:12px;border:1px solid var(--line);background:#0a1226;cursor:zoom-in}
   .vcap{font-size:12px;color:var(--dim2);margin-top:8px}
+  .vdetail{font-size:12.5px;margin-top:6px}
+  .vdetail a{color:var(--blue2);text-decoration:none}
+  .vdetail a:hover{text-decoration:underline}
   .vmedia .miss{font-size:12.5px;color:#ffd9a8;background:rgba(255,180,61,.08);border:1px solid rgba(255,180,61,.28);
     border-radius:10px;padding:10px 12px;margin-top:10px}
   .vsec{margin-bottom:16px}
@@ -309,6 +312,7 @@
         <div class="vtabs" id="vtabs"></div>
         <img id="vimg" alt="梗图 / 原始内容">
         <div class="vcap" id="vcap"></div>
+        <div class="vdetail" id="vdetail" style="display:none"></div>
         <div id="vmiss"></div>
       </div>
       <div class="vtext">
@@ -1824,11 +1828,14 @@ function openViewer(no){
     img.dataset.alt=altSrc(m.src); img.dataset.step=''; img.dataset.raw=m.raw; img.dataset.detail=m.detail;
     img.style.visibility='visible'; img.src=m.src;
     document.getElementById('vcap').textContent=m.cap;
+    const vd=document.getElementById('vdetail');
+    if(vd){ if(m.detail){ vd.style.display=''; vd.innerHTML='<a href="'+m.detail+'" target="_blank" rel="noopener">↗ 原图出处</a>'; } else { vd.style.display='none'; vd.innerHTML=''; } }
   };
   if(media.length){ img.style.display=''; showMediaFn(media[0]); }
   else{
     img.style.display='none';
     document.getElementById('vcap').textContent='本条暂无已核实的对应梗图（原因见下方说明）';
+    const vd0=document.getElementById('vdetail'); if(vd0){ vd0.style.display='none'; vd0.innerHTML=''; }
     showMediaFn=function(){};
   }
   document.getElementById('vmiss').innerHTML=s.orig?'':
