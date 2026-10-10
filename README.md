@@ -7,7 +7,8 @@
 下载 Release 里的 zip → 解压 → **双击 `index.html`**。
 
 ```
-index.html      单文件页面（CSS / JS 全内联，数据驱动渲染）
+index.html      页面骨架（样式与渲染逻辑全内联，双击即开）
+data.js         条目数据（SCENES / TRIGGERS / IMGNOTE；添加条目改这里）
 assets/         本地资源：梗图与原始对话截图
 ```
 
