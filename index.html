@@ -381,12 +381,12 @@ const REG={A:[],B:[],C:[],D:[]};
 
     let media='';
     const os=origList(s);
-    if(os.length) media+='<div class="thumb" data-open="'+s.no+'">'+imgHTML(os[0].src)+
-      '<div class="lab">原始内容'+(os.length>1?'（共 '+os.length+' 张）':'')+'</div><div class="zoom">点开看全文</div></div>';
+    if(os.length) media+='<div class="thumb" data-zoom-src="'+os[0].src+'">'+imgHTML(os[0].src)+
+      '<div class="lab">原始内容'+(os.length>1?'（共 '+os.length+' 张）':'')+'</div><div class="zoom">点击看大图</div></div>';
     if(s.imgs.length){
-      media+='<div class="thumb" data-open="'+s.no+'">'+imgHTML(memeUrl(s.imgs[0]))+
+      media+='<div class="thumb" data-zoom-src="'+memeUrl(s.imgs[0],true)+'">'+imgHTML(memeUrl(s.imgs[0]))+
         '<div class="lab meme">'+imgLabel(s.imgs[0])+'</div>'+
-        '<div class="zoom">点开看全文</div></div>';
+        '<div class="zoom">点击看大图</div></div>';
     }else{
       media+='<div class="thumb empty" data-open="'+s.no+'">暂无<br>已核实的<br>对应梗图</div>';
     }
