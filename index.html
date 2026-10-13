@@ -373,8 +373,7 @@ const REG={A:[],B:[],C:[],D:[]};
 
   groups[k].forEach(function(s,idx){
     const art=document.createElement('article');
-    const big=(k==='A');
-    art.className='card'+(big?'':' compact')+(s.orig?' has-orig':'');
+    art.className='card compact'+(s.orig?' has-orig':'');
     art.dataset.cls=k;
     art.dataset.ev=s.ev;
     art.dataset.search=(s.no+' '+k+' '+s.title+' '+s.tags.join(' ')+' '+s.teaser+' '+
@@ -393,16 +392,8 @@ const REG={A:[],B:[],C:[],D:[]};
     }
     if(IMGNOTE[s.no]) media+='<div class="imgnote ok">'+IMGNOTE[s.no]+'</div>';
 
-    let prev='';
-    if(big){
-      const pv=s.trans.slice(0,3).map(function(t){
-        const whoMap={user:['用户','user'],ai:['DeepSeek','ai'],cot:['思考中','cot'],note:['考据','note']};
-        const w=whoMap[t[0]]||whoMap.note;
-        let txt=t[1]; if(txt.length>110) txt=txt.slice(0,110)+'…';
-        return '<div class="pv '+w[1]+'"><b>'+w[0]+'</b>'+hl(txt)+'</div>';
-      }).join('');
-      prev='<div class="prev">'+pv+'<div class="more">共 '+s.trans.length+' 段，点下方按钮看完整转录 →</div></div>';
-    }
+    /* A 类转录预览已移除：原始内容较长、卡片上预览意义有限；全部卡片统一为小卡 */
+    const prev='';
 
     art.innerHTML=
       '<div class="mediacol">'+media+'</div>'+
