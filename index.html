@@ -71,6 +71,7 @@
   .secdef b{color:var(--dim)}
 
   .grid{display:grid;gap:16px}
+  .more-row{text-align:center;margin:14px 0 2px}
   .card{display:grid;grid-template-columns:236px 1fr;gap:18px;
     background:linear-gradient(180deg,var(--card),var(--card2));
     border:1px solid var(--line);border-radius:var(--radius);padding:16px}
@@ -351,6 +352,9 @@ SCENES.forEach(function(s){ groups[s.cls].push(s); s.tags.forEach(function(t){ i
 /* 显示编号按类内顺序生成（内部 id 只用作查看器键值） */
 ['A','B','C','D'].forEach(function(k){ groups[k].forEach(function(s,i){ s.disp=k+(i+1); }); });
 
+const PAGE=12;
+const grids={}, moreRows={};
+const pending={A:[],B:[],C:[],D:[]};
 ['A','B','C','D'].forEach(function(k){
   const meta=CLASSES[k];
   const wrap=document.createElement('section');
@@ -363,8 +367,9 @@ SCENES.forEach(function(s){ groups[s.cls].push(s); s.tags.forEach(function(t){ i
     '<p class="secdef">'+meta.def+'</p>';
   wrap.appendChild(grid);
   secEl.appendChild(wrap);
+  grids[k]=grid;
 
-  groups[k].forEach(function(s){
+  groups[k].forEach(function(s,idx){
     const art=document.createElement('article');
     const big=(k==='A');
     art.className='card'+(big?'':' compact')+(s.orig?' has-orig':'');
@@ -416,9 +421,33 @@ SCENES.forEach(function(s){ groups[s.cls].push(s); s.tags.forEach(function(t){ i
           return p[1] ? '<a href="'+p[1]+'" target="_blank" rel="noopener">↗ '+p[0]+'</a>' : '<span>📎 '+p[0]+'</span>';
         }).join('')+'</div>':'')+
       '</div>';
-    grid.appendChild(art);
+    if(idx<PAGE) grid.appendChild(art); else pending[k].push(art);
   });
+
+  if(pending[k].length){
+    const more=document.createElement('div');
+    more.className='more-row';
+    const btn=document.createElement('button');
+    btn.className='btn';
+    btn.textContent='展开更多（还剩 '+pending[k].length+' 条）';
+    more.appendChild(btn);
+    wrap.appendChild(more);
+    moreRows[k]=more;
+    btn.addEventListener('click',function(){
+      pending[k].splice(0,PAGE).forEach(function(el){ grids[k].appendChild(el); });
+      if(!pending[k].length) moreRows[k].style.display='none';
+      else btn.textContent='展开更多（还剩 '+pending[k].length+' 条）';
+    });
+  }
 });
+
+function expandAll(){
+  ['A','B','C','D'].forEach(function(k){
+    if(!pending[k].length) return;
+    pending[k].splice(0).forEach(function(el){ grids[k].appendChild(el); });
+    if(moreRows[k]) moreRows[k].style.display='none';
+  });
+}
 
 /* （原「更多梗图」渲染代码已按要求移除） */
 /* 顶部统计卡已按要求删除（原 4 项：图片已本地化 / 条名场面 / 条带原始内容 / 条图文已核对） */
@@ -443,6 +472,7 @@ function applyFilter(){
   const kw=q.value.trim().toLowerCase();
   const act=document.querySelector('#chips .chip.on');
   const val=act?act.dataset.val:'all';
+  if(kw||val!=='all') expandAll();
   let n=0;
   document.querySelectorAll('.card').forEach(function(card){
     const okKw=!kw||card.dataset.search.indexOf(kw)>=0;
