@@ -74,6 +74,8 @@
   .pager{display:flex;justify-content:center;align-items:center;gap:12px;margin:14px 0 2px;flex-wrap:wrap}
   .pager .pg{font-size:12.5px;color:var(--dim2);font-variant-numeric:tabular-nums}
   .pager .btn[disabled]{opacity:.35;cursor:default}
+  .pager .pgnums{display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .pager .pgbtn{min-width:30px;padding:5px 8px;font-size:12.5px}
   .card{display:grid;grid-template-columns:236px 1fr;gap:18px;
     background:linear-gradient(180deg,var(--card),var(--card2));
     border:1px solid var(--line);border-radius:var(--radius);padding:16px}
@@ -423,16 +425,18 @@ const REG={A:[],B:[],C:[],D:[]};
   const prev=document.createElement('button');
   prev.className='btn pager-prev';
   prev.textContent='‹ 上一页';
-  const label=document.createElement('span');
-  label.className='pg';
+  const nums=document.createElement('span');
+  nums.className='pgnums';
   const next=document.createElement('button');
   next.className='btn pager-next';
   next.textContent='下一页 ›';
+  const label=document.createElement('span');
+  label.className='pg';
   prev.onclick=function(){ if(pagerState[k].page>1){ pagerState[k].page--; updatePaging(k); } };
   next.onclick=function(){ pagerState[k].page++; updatePaging(k); };
-  pg.appendChild(prev); pg.appendChild(label); pg.appendChild(next);
+  pg.appendChild(prev); pg.appendChild(nums); pg.appendChild(next); pg.appendChild(label);
   wrap.appendChild(pg);
-  pagerEls[k]={label:label,prev:prev,next:next};
+  pagerEls[k]={label:label,nums:nums,prev:prev,next:next};
 });
 
 function updatePaging(k){
@@ -449,9 +453,38 @@ function updatePaging(k){
     el.style.display=on?'':'none';
   });
   const pe=pagerEls[k];
-  pe.label.textContent=page+' / '+pages+' 页 · 共 '+total+' 条';
+  pe.nums.innerHTML='';
+  pageList(page,pages).forEach(function(p){
+    if(p==='…'){
+      const sp=document.createElement('span');
+      sp.className='pgdots';
+      sp.textContent='…';
+      pe.nums.appendChild(sp);
+      return;
+    }
+    const b=document.createElement('button');
+    b.className='btn pgbtn'+(p===page?' primary':'');
+    b.textContent=p;
+    b.onclick=function(){ pagerState[k].page=p; updatePaging(k); };
+    pe.nums.appendChild(b);
+  });
+  pe.label.textContent='共 '+total+' 条';
   pe.prev.disabled=(page<=1);
   pe.next.disabled=(page>=pages);
+}
+
+function pageList(page,pages){
+  if(pages<=9){
+    const all=[];
+    for(let p=1;p<=pages;p++) all.push(p);
+    return all;
+  }
+  const a=[1];
+  if(page>4) a.push('…');
+  for(let q=Math.max(2,page-2);q<=Math.min(pages-1,page+2);q++) a.push(q);
+  if(page<pages-3) a.push('…');
+  a.push(pages);
+  return a;
 }
 
 /* （原「更多梗图」渲染代码已按要求移除） */
