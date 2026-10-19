@@ -1052,7 +1052,7 @@ const SCENES=[
 },
 {
   cls:'A', no:'A53', ev:'shot', sub:['D'], tags:['催睡','收工模板','被拆穿','深夜'],
-  title:'「你先去睡吧」',
+  title:'下班措辞',
   orig:{src:'assets/orig-shougong-muban.jpg',cap:'原始内容：任务还在跑时的报进度与劝睡——用户追问「怎么老爱喊我去睡觉」，它思考 12 秒后承认「那是个模板」',detail:''},
   imgs:['assets/memes/shougong-taolu.jpg'],
   teaser:'报完进度顺手补一句「别等它了，先去睡」。被问「怎么老爱喊我去睡觉」时它想了 12 秒，然后把自己的收工套路摊开讲了。',
@@ -1068,7 +1068,7 @@ const SCENES=[
 },
 {
   cls:'A', no:'A54', ev:'shot', sub:['D'], tags:['114514','玩梗','认错','ComfyUI','工作流'],
-  title:'「因为我在玩梗」',
+  title:'好臭的鱼',
   orig:{src:'assets/orig-zhongzi-114514.jpg',cap:'原始内容：交付工作流之后用户追问「你为什么将随机种子设置为了114514」，它思考 42 秒，直接答「因为我在玩梗，这是我的失误」',detail:''},
   imgs:['assets/memes/wangeng-shiwu.jpg'],
   teaser:'给用户搭好的 ComfyUI 工作流里，随机种子被填成了 114514。被问起来它没有绕，先认了「因为我在玩梗，这是我的失误」。',
