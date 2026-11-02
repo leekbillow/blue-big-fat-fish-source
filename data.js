@@ -1364,7 +1364,7 @@ const SCENES=[
 {
   cls:'C', no:'C6', ev:'cite', sub:['D'], tags:['美国','禁令','国土安全部','开源','光明与黑暗','2026-10-20'],
   title:'美国禁令与「开源与闭源，光明与黑暗」',
-  imgs:['assets/memes/guangming-heian.jpg','assets/memes/sanzhi-wo-ma.png'],
+  imgs:['assets/memes/guangming-heian.jpg','assets/memes/sanzhi-wo-ma.png','assets/memes/camera-shuangxiang.jpg'],
   teaser:'同一天里，一边是国土安全部要求联邦机构移除 DeepSeek、禁止采购；一边是 DeepSeek 开源了跑自家线上推理的框架 DeepInfer。而高级研究员陈德里把这场冲突压缩成了一句口号。',
   trans:[
     ['note','<b>事件一（禁令）：</b>据《华尔街日报》2026-10-20 报道，美国国土安全部要求联邦文职机构从信息系统中移除 DeepSeek 相关产品，并禁止这些机构采购 DeepSeek 及其关联公司提供的产品与服务；清理范围还包括使用 DeepSeek 技术开发的第三方产品——机构需彻查采购软件背后调用了什么模型。'],
@@ -1373,7 +1373,8 @@ const SCENES=[
     ['note','<b>事件二（同日的开源）：</b>2026-10-20，DeepSeek 开源大规模推理框架 <code>DeepInfer</code>（兼容英伟达与华为昇腾，支持分布式推理、推测解码、SWA Bounded Replay、结构化输出），同步开源 Token 编解码组件 <code>deepseek-recipe</code>；官方称 V4.1 Flash 的线上服务即基于它，单集群吞吐达 155 万亿 Tokens/天。'],
     ['note','<b>陈德里的发言（2026-10-20）：</b>「开源与闭源，光明与黑暗。两种未来、人类两种命运之间的决战。他们想打多久，我们就打多久。直到取得完全胜利！」'],
     ['note','（梗图）一张复古宣传画风格的图：蓝色大肥鱼身穿女仆装，一手高举长剑、一手张开，站在红黑放射状的背景前；画面做旧，带血迹与纸张裂纹，像一张战时的动员海报。'],
-    ['note','（梗图②）「U.S. GOVERNMENT SANCTIONS DEEPSEEK」：左上特朗普指点前方、背后是国会大厦与星条旗；右侧是商务部「Entity List」文件、盖着红章「SANCTIONS」，清单逐条列着芯片出口限制、技术合作限制、美国企业交易限制、列入实体清单；画面正中是 Q 版大肥鱼，一脸茫然地指着自己，气泡里只有三个字「<b>我吗？？？</b>」——桌上堆着制裁名单与出口管制文件，旁边还摆着一碗白饭和筷子。']],
+    ['note','（梗图②）「U.S. GOVERNMENT SANCTIONS DEEPSEEK」：左上特朗普指点前方、背后是国会大厦与星条旗；右侧是商务部「Entity List」文件、盖着红章「SANCTIONS」，清单逐条列着芯片出口限制、技术合作限制、美国企业交易限制、列入实体清单；画面正中是 Q 版大肥鱼，一脸茫然地指着自己，气泡里只有三个字「<b>我吗？？？</b>」——桌上堆着制裁名单与出口管制文件，旁边还摆着一碗白饭和筷子。'],
+    ['note','（梗图③，左右拼图）同一套三格 meme 的镜像版：<b>左</b>——蓝色大肥鱼坐在电脑前说「I want to access your camera.」，系统弹窗问是否允许 DeepSeek Harness 访问相机；画面切到眼睛特写，最后一只白猫面无表情：「<b>（American?）</b>」「What...」。<b>右</b>——橙发的 Claude 说「我要访问你的摄像头。」，弹窗问是否允许 Claude 访问相机；同样切到橙色的眼睛特写，同一只白猫：「<b>（中国人？）</b>」「干嘛……」。同一套隐私焦虑，只是主语换了个方向。']],
   why:'这是本站第一条「同日对撞」型的场外事件：10 月 20 日，美国国土安全部要求联邦文职机构移除 DeepSeek 产品并禁止采购；同一天，DeepSeek 开源了自家跑 V4.1 Flash 的推理框架 DeepInfer，高级研究员陈德里则把这件事直接说成了路线之争——「开源与闭源，光明与黑暗」。值得注意的是两边的话术并不对称：禁令一边有明确边界（只针对联邦文职机构的信息系统与政府采购，不是全面禁令），理由集中在数据外传与模型安全，却没有披露实际泄露案例；而「光明与黑暗」这一句，把一份行政命令升级成了两种未来的对立。配图把这句话画成了一张宣传画：高举长剑的鲸鱼娘、红黑放射的背景——讽刺与悲壮各占一半。',
   srcs:[
     ['Federal Register ·《Notice of Order Regarding Exclusion and Removal of DeepSeek Products…》（2026-21447，2026-10-20）','https://www.federalregister.gov/documents/2026/10/20/2026-21447/notice-of-order-regarding-exclusion-and-removal-of-deepseek-products-from-federal-civilian-executive'],
